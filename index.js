@@ -28,7 +28,7 @@ app.put("/clima", (req, res) => {
         }
     }
 
-    res.send("Dados recebidos e armazenados!");
+    res.send(`Dados recebidos e armazenados! ${storedData}`);
 });
 
 app.get("/clima", (req, res) => {
