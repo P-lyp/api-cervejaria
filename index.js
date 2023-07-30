@@ -17,4 +17,8 @@ app.post("/store", (req, res) => {
     res.send("Dados recebidos e armazenados!");
 });
 
+app.get("/store", (req, res) => {
+    res.send(storedData);
+});
+
 app.listen(process.env.PORT || 3000);
