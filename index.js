@@ -31,7 +31,7 @@ app.put("/clima", (req, res) => {
     });
 
     if (!keyExists) {
-        storedData.push(data);
+        storedData.push(newData);
     }
 
     console.log("Dados armazenados:", storedData);
