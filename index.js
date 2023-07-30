@@ -10,12 +10,11 @@ app.get("/", (req, res) => {
     res.send("Yo!");
 });
 
-app.post("/store"),
-    (req, res) => {
-        const data = req.body;
-        storedData.push(data);
-        console.log("Dados armazenados:", data);
-        res.send("Dados recebidos e armazenados!");
-    };
+app.post("/store", (req, res) => {
+    const data = req.body;
+    storedData.push(data);
+    console.log("Dados armazenados:", data);
+    res.send("Dados recebidos e armazenados!");
+});
 
 app.listen(process.env.PORT || 3000);
