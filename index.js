@@ -21,20 +21,26 @@ app.get("/", (req, res) => {
 
 app.put("/clima", (req, res) => {
     const newData = req.body;
-    let keyExists = false;
-
-    storedData.forEach((data, index) => {
-        if (data.chave === newData.chave) {
-            console.log(data.chave);
-            console.log(newData.chave);
-            storedData[index] = newData;
-            keyExists = true;
-        }
-    });
-
-    if (!keyExists) {
-        storedData.push(newData);
+    storedData.push(newData);
+    if (storedData.length > 1) {
+        storedData.shift();
     }
+
+    // const newData = req.body;
+    // let keyExists = false;
+
+    // storedData.forEach((data, index) => {
+    //     if (data.chave === newData.chave) {
+    //         console.log(data.chave);
+    //         console.log(newData.chave);
+    //         storedData[index] = newData;
+    //         keyExists = true;
+    //     }
+    // });
+
+    // if (!keyExists) {
+    //     storedData.push(newData);
+    // }
 
     console.log("Dados armazenados:", storedData);
     res.send("Dados recebidos e armazenados!");
