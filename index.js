@@ -20,11 +20,11 @@ app.get("/", (req, res) => {
 });
 
 app.put("/clima", (req, res) => {
-    // const data = req.body;
+    const newData = req.body;
     // storedData.push(data);
-    for (const key in req.body) {
-        if (data.hasOwnPropery(key)) {
-            data[key] = req.body[key];
+    for (const key in newData) {
+        if (storedData.hasOwnPropery(key)) {
+            storedData[key] = newData[key];
         }
     }
 
