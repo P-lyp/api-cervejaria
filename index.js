@@ -25,6 +25,8 @@ app.put("/clima", (req, res) => {
 
     storedData.forEach((data, index) => {
         if (data.chave === newData.chave) {
+            console.log(data.chave);
+            console.log(newData.chave);
             storedData[index] = newData;
             keyExists = true;
         }
