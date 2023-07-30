@@ -21,4 +21,4 @@ app.get("/store", (req, res) => {
     res.send(storedData);
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 5501);
