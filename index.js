@@ -5,6 +5,13 @@ app.use(express.json());
 
 const storedData = [];
 
+server.use(
+    cors({
+        origin: "*",
+        optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+    })
+);
+
 app.get("/", (req, res) => {
     console.log("Just got a request!");
     res.send("Yo!");
