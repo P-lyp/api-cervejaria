@@ -26,30 +26,14 @@ app.put("/clima", (req, res) => {
         storedData.shift();
     }
 
-    // const newData = req.body;
-    // let keyExists = false;
-
-    // storedData.forEach((data, index) => {
-    //     if (data.chave === newData.chave) {
-    //         console.log(data.chave);
-    //         console.log(newData.chave);
-    //         storedData[index] = newData;
-    //         keyExists = true;
-    //     }
-    // });
-
-    // if (!keyExists) {
-    //     storedData.push(newData);
-    // }
-
     res.send(newData);
 });
 
-app.post("/clima", (req, res) => {
-    const data = req.body;
-    storedData.push(data);
-    res.send(newData);
-});
+// app.post("/clima", (req, res) => {
+//     const data = req.body;
+//     storedData.push(data);
+//     res.send(newData);
+// });
 
 app.get("/clima", (req, res) => {
     res.send(storedData);
