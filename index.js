@@ -12,7 +12,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-const storedData = {};
+const storedData = [];
 
 app.get("/", (req, res) => {
     console.log("Requisição GET concluída!");
@@ -20,18 +20,20 @@ app.get("/", (req, res) => {
 });
 
 app.put("/clima", (req, res) => {
-    const newData = req.body;
-    // storedData.push(data);
-    for (const key in newData) {
-        if (storedData.hasOwnProperty(key)) {
-            if (!storedData[key]) {
-                storedData[key] = [];
-            }
-            storedData[key].push(newData[key]);
-        }
-    }
+    const data = req.body;
 
-    res.send("Dados recebidos e armazenados!");
+    const existingDataIndex = storedData.findIndex((item) => {
+        JSON.stringify(item) === JSON.stringify(data);
+    });
+    if (existingDataIndex !== -1) {
+        storedData[existingDataIndex] = data;
+        console.log("Dados armazenados:", data);
+        res.send("Dados recebidos e armazenados!");
+    } else {
+        storedData.push(data);
+        console.log("Dados armazenados:", data);
+        res.send("Dados recebidos e armazenados!");
+    }
 });
 
 app.get("/clima", (req, res) => {
