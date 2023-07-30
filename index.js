@@ -46,12 +46,12 @@ app.put("/clima", (req, res) => {
     res.send("Dados recebidos e armazenados!");
 });
 
-// app.post("/clima", (req, res) => {
-//     const data = req.body;
-//     storedData.push(data);
-//     console.log("Dados armazenados:", data);
-//     res.send("Dados recebidos e armazenados!");
-// });
+app.post("/clima", (req, res) => {
+    const data = req.body;
+    storedData.push(data);
+    console.log("Dados armazenados:", data);
+    res.send("Dados recebidos e armazenados!");
+});
 
 app.get("/clima", (req, res) => {
     res.send(storedData);
