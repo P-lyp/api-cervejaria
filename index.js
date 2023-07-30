@@ -23,11 +23,15 @@ app.put("/clima", (req, res) => {
     const data = req.body;
 
     const existingDataIndex = storedData.findIndex((item) => {
-        JSON.stringify(item) === JSON.stringify(data);
+        Object.keys(item).some((key) => item[key] === data[key]);
     });
+
     if (existingDataIndex !== -1) {
-        storedData[existingDataIndex] = data;
-        console.log("Dados armazenados:", data);
+        const existingData = storedData[existingDataIndex];
+        for (const key in data) {
+            existingData[key] = data[key];
+        }
+        console.log("Dados armazenados:", existingData);
         res.send("Dados recebidos e armazenados!");
     } else {
         storedData.push(data);
