@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-// app.use(express.json());
+app.use(express.json());
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5501"); // update to match the domain you will make the request from
@@ -42,13 +42,13 @@ app.put("/clima", (req, res) => {
     //     storedData.push(newData);
     // }
 
-    res.send("Dados recebidos e armazenados!");
+    res.send(newData);
 });
 
 app.post("/clima", (req, res) => {
     const data = req.body;
     storedData.push(data);
-    res.send("Dados recebidos e armazenados!");
+    res.send(newData);
 });
 
 app.get("/clima", (req, res) => {
