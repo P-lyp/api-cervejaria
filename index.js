@@ -24,7 +24,7 @@ app.put("/clima", (req, res) => {
     // storedData.push(data);
     for (const key in newData) {
         if (storedData.hasOwnProperty(key)) {
-            storedData[key] = newData[key];
+            storedData[key].push(newData[key]);
         }
     }
 
