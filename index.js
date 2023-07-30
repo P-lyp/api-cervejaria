@@ -15,18 +15,23 @@ app.use(function (req, res, next) {
 const storedData = [];
 
 app.get("/", (req, res) => {
-    console.log("Just got a request!");
-    res.send("Yo!");
+    console.log("Requisição GET concluída!");
+    res.send("API funcionando!");
 });
 
-app.post("/store", (req, res) => {
-    const data = req.body;
-    storedData.push(data);
-    console.log("Dados armazenados:", data);
+app.put("/clima", (req, res) => {
+    // const data = req.body;
+    // storedData.push(data);
+    for (const key in req.body) {
+        if (data.hasOwnPropery(key)) {
+            data[key] = req.body[key];
+        }
+    }
+
     res.send("Dados recebidos e armazenados!");
 });
 
-app.get("/store", (req, res) => {
+app.get("/clima", (req, res) => {
     res.send(storedData);
 });
 
