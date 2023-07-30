@@ -20,25 +20,30 @@ app.get("/", (req, res) => {
 });
 
 app.put("/clima", (req, res) => {
-    const data = req.body;
+    const newData = req.body;
+    let keyExists = false;
 
-    const existingDataIndex = storedData.findIndex((item) => {
-        Object.keys(item).some((key) => item[key] === data[key]);
+    storedData.forEach((data, index) => {
+        if (data.chave === newData.chave) {
+            storedData[index] = newData;
+            keyExists = true;
+        }
     });
 
-    if (existingDataIndex !== -1) {
-        const existingData = storedData[existingDataIndex];
-        for (const key in data) {
-            existingData[key] = data[key];
-        }
-        console.log("Dados armazenados:", existingData);
-        res.send("Dados recebidos e armazenados!");
-    } else {
+    if (!keyExists) {
         storedData.push(data);
-        console.log("Dados armazenados:", data);
-        res.send("Dados recebidos e armazenados!");
     }
+
+    console.log("Dados armazenados:", storedData);
+    res.send("Dados recebidos e armazenados!");
 });
+
+// app.post("/clima", (req, res) => {
+//     const data = req.body;
+//     storedData.push(data);
+//     console.log("Dados armazenados:", data);
+//     res.send("Dados recebidos e armazenados!");
+// });
 
 app.get("/clima", (req, res) => {
     res.send(storedData);
