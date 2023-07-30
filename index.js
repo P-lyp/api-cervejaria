@@ -12,7 +12,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-const storedData = [];
+const storedData = {};
 
 app.get("/", (req, res) => {
     console.log("Requisição GET concluída!");
@@ -24,11 +24,14 @@ app.put("/clima", (req, res) => {
     // storedData.push(data);
     for (const key in newData) {
         if (storedData.hasOwnProperty(key)) {
+            if (!storedData[key]) {
+                storedData[key] = [];
+            }
             storedData[key].push(newData[key]);
         }
     }
 
-    res.send(`Dados recebidos e armazenados! ${storedData}`);
+    res.send("Dados recebidos e armazenados!");
 });
 
 app.get("/clima", (req, res) => {
