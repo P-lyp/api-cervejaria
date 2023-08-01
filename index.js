@@ -1,7 +1,27 @@
 const express = require("express");
 const app = express();
 
-app.use(express.json());
+process.env.CYCLIC_DB = "misty-boa-garmentCyclicDB";
+
+const CyclicDb = require("@cyclic.sh/dynamodb");
+const db = CyclicDb("misty-boa-garmentCyclicDB");
+
+const animals = db.collection("animals");
+
+const run = async function () {
+    let animals = db.collection("animals");
+
+    // create an item in collection with key "leo"
+    let leo = await animals.set("leo", {
+        type: "cat",
+        color: "orange",
+    });
+
+    // get an item at key "leo" from collection animals
+    let item = await animals.get("leo");
+    console.log(item);
+};
+run();
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5501"); // update to match the domain you will make the request from
