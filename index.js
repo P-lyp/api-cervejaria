@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 //
 // curl -i https://some-app.cyclic.app/myFile.txt
-app.get("*", async (req, res) => {
+app.get("/teste", async (req, res) => {
     let filename = req.path.slice(1);
 
     try {
