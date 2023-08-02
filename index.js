@@ -59,7 +59,7 @@ app.put("/teste", async (req, res) => {
 });
 
 // curl -i -XDELETE https://some-app.cyclic.app/myFile.txt
-app.delete("*", async (req, res) => {
+app.delete("/teste", async (req, res) => {
     let filename = req.path.slice(1);
 
     await s3
@@ -69,7 +69,7 @@ app.delete("*", async (req, res) => {
         })
         .promise();
 
-    res.set("Content-type", "text/plain");
+    res.set("Content-type", "application/json");
     res.send("ok").end();
 });
 
