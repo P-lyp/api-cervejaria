@@ -14,7 +14,7 @@ app.get("*", async (req, res) => {
         let s3File = await s3
             .getObject({
                 Bucket: "cyclic-misty-boa-garment-sa-east-1",
-                Key: filename,
+                Key: "teste.json",
             })
             .promise();
 
@@ -41,7 +41,7 @@ app.put("*", async (req, res) => {
         .putObject({
             Body: JSON.stringify(req.body),
             Bucket: "cyclic-misty-boa-garment-sa-east-1",
-            Key: filename,
+            Key: "teste.json",
         })
         .promise();
 
@@ -55,8 +55,8 @@ app.delete("*", async (req, res) => {
 
     await s3
         .deleteObject({
-            Bucket: process.env.BUCKET,
-            Key: filename,
+            Bucket: "cyclic-misty-boa-garment-sa-east-1",
+            Key: "teste.json",
         })
         .promise();
 
