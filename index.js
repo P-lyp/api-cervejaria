@@ -45,7 +45,7 @@ app.put("/teste", async (req, res) => {
         })
         .promise();
 
-    res.set("Content-type", "text/plain");
+    res.set("Content-type", "application/json");
     res.send("ok").end();
 });
 
