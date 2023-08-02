@@ -13,7 +13,7 @@ app.get("*", async (req, res) => {
     try {
         let s3File = await s3
             .getObject({
-                Bucket: process.env.BUCKET,
+                Bucket: "cyclic-misty-boa-garment-sa-east-1",
                 Key: filename,
             })
             .promise();
@@ -40,7 +40,7 @@ app.put("*", async (req, res) => {
     await s3
         .putObject({
             Body: JSON.stringify(req.body),
-            Bucket: process.env.BUCKET,
+            Bucket: "cyclic-misty-boa-garment-sa-east-1",
             Key: filename,
         })
         .promise();
