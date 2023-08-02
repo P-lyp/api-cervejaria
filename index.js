@@ -1,3 +1,5 @@
+// FUNCIONANDO, SÓ PRECISA ADAPTAR PRO CÓDIGO ANTIGO
+
 const express = require("express");
 const app = express();
 const AWS = require("aws-sdk");
