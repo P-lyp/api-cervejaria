@@ -14,7 +14,7 @@ app.get("*", async (req, res) => {
         let s3File = await s3
             .getObject({
                 Bucket: "cyclic-misty-boa-garment-sa-east-1",
-                Key: "teste.json",
+                Key: "/teste",
             })
             .promise();
 
@@ -32,7 +32,7 @@ app.get("*", async (req, res) => {
 });
 
 // curl -i -XPUT --data '{"k1":"value 1", "k2": "value 2"}' -H 'Content-type: application/json' https://some-app.cyclic.app/myFile.txt
-app.put("*", async (req, res) => {
+app.put("/teste", async (req, res) => {
     let filename = req.path.slice(1);
 
     console.log(typeof req.body);
@@ -41,7 +41,7 @@ app.put("*", async (req, res) => {
         .putObject({
             Body: JSON.stringify(req.body),
             Bucket: "cyclic-misty-boa-garment-sa-east-1",
-            Key: "teste.json",
+            Key: "teste.txt",
         })
         .promise();
 
