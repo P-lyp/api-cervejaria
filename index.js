@@ -5,7 +5,7 @@ const s3 = new AWS.S3();
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
-
+//
 // curl -i https://some-app.cyclic.app/myFile.txt
 app.get("*", async (req, res) => {
     let filename = req.path.slice(1);
