@@ -2,17 +2,24 @@
 
 const express = require("express");
 const app = express();
+const firebase = require("firebase");
+const cors = require("cors");
 
 app.use(express.json());
+app.use(cors());
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5501"); // update to match the domain you will make the request from
-    res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-});
+const firebaseConfig = {
+    apiKey: "AIzaSyBbHMX-6cW5lWUpdL8bEn3nkndgIam_chw",
+    authDomain: "bd-cervejaria.firebaseapp.com",
+    projectId: "bd-cervejaria",
+    storageBucket: "bd-cervejaria.appspot.com",
+    messagingSenderId: "893426681360",
+    appId: "1:893426681360:web:81132b0e042e9bc55a2c95",
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const nomes = db.collection("nomes");
 
 const storedData = [];
 
@@ -21,14 +28,11 @@ app.get("/", (req, res) => {
     res.send("API funcionando!");
 });
 
-app.put("/clima", (req, res) => {
+app.put("/clima", async (req, res) => {
     const newData = req.body;
-    storedData.push(newData);
-    if (storedData.length > 1) {
-        storedData.shift();
-    }
+    await nomes.add(newData);
 
-    res.send(newData);
+    res.send("Dado armazenado com sucesso!");
 });
 
 // app.post("/clima", (req, res) => {
@@ -41,4 +45,4 @@ app.get("/clima", (req, res) => {
     res.send(storedData);
 });
 
-app.listen(process.env.PORT || 5501);
+app.listen(process.env.PORT || 3000);
