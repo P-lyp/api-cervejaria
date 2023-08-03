@@ -1,4 +1,6 @@
-// FUNCIONANDO, SÓ PRECISA ADAPTAR PRO CÓDIGO ANTIGO
+//AWS S3 STORAGE
+
+// FUNCIONANDO, SÓ PRECISA ADAPTAR PARA AS NECESSIDADES DO CÓDIGO
 
 const express = require("express");
 const app = express();
