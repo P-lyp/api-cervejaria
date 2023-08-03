@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const firebase = require("firebase");
 const cors = require("cors");
+//instalar dependencia cors
 
 app.use(express.json());
 app.use(cors());
