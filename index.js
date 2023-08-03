@@ -44,8 +44,8 @@ app.put("/users", async (req, res) => {
 
 app.get("/users", async (req, res) => {
     const snapshot = await usuarios.get();
-
-    res.send(snapshot);
+    listaUsuarios = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    res.send(listaUsuarios);
 });
 
 app.listen(process.env.PORT || 3000);
