@@ -41,8 +41,10 @@ app.put("/users", async (req, res) => {
 //     res.send(newData);
 // });
 
-app.get("/clima", (req, res) => {
-    res.send(storedData);
+app.get("/users", async (req, res) => {
+    const snapshot = await usuarios.get();
+
+    res.send(snapshot);
 });
 
 app.listen(process.env.PORT || 3000);
