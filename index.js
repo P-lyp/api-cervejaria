@@ -19,18 +19,18 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-const nomes = db.collection("nomes");
+const usuarios = db.collection("usuarios");
 
 const storedData = [];
 
 app.get("/", (req, res) => {
     console.log("Requisição GET concluída!");
-    res.send("API funcionando!");
+    res.send("API funcionando! - Firebase");
 });
 
-app.put("/clima", async (req, res) => {
+app.put("/users", async (req, res) => {
     const newData = req.body;
-    await nomes.add(newData);
+    await usuarios.add(newData);
 
     res.send("Dado armazenado com sucesso!");
 });
